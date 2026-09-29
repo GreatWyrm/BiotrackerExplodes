@@ -39,7 +39,7 @@ public class Plugin : BasePlugin
 
         explodeChance = Config.Bind("Exploding Biotracker", "ExplosionChance", 0.05, "The chance for the biotracker to explode when you don't get above the threshold");
         explodeThreshold = Config.Bind("Exploding Biotracker", "ExplosionThreshold", 1, "The amount of enemies to be equal to or below for the chance to explode to be rolled");
-        includeScouts = Config.Bind("Exploding Biotracker", "IncludeScouts", false, "Whether or not to include scouts (when they're scouting) when tallying the amount of enemies that were pinged.");
+        includeScouts = Config.Bind("Exploding Biotracker", "IncludeScouts", false, "Whether or not to include scouts when tallying the amount of enemies that were pinged.");
         willExplodeSelf = Config.Bind("Exploding Biotracker", "IsLethal", true,
             "Whether or not exploding will kill the player using the biotracker");
         
@@ -59,7 +59,7 @@ public class Plugin : BasePlugin
             int scouts = 0;
             for (int i = 0; i < enemies.Count; i++)
             {
-                if (enemies[i].IsScout && enemies[i].Locomotion.CurrentStateEnum == ES_StateEnum.ScoutDetection)
+                if (enemies[i].IsScout)
                 {
                     scouts++;
                 }
