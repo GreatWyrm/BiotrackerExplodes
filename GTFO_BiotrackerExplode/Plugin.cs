@@ -8,8 +8,6 @@ using BiotrackerExplode;
 using Enemies;
 using Il2CppSystem.Collections.Generic;
 using Player;
-using UnityEngine;
-using Random = System.Random;
 
 [assembly: AssemblyVersion(Plugin.VERSION)]
 [assembly: AssemblyFileVersion(Plugin.VERSION)]
@@ -32,7 +30,7 @@ public class Plugin : BasePlugin
     private static ConfigEntry<int> explodeThreshold;
     private static ConfigEntry<bool> includeScouts;
     private static ConfigEntry<bool> willExplodeSelf;
-    private static Random _random = new();
+    private static System.Random _random = new();
     
     
     public override void Load()
@@ -83,14 +81,15 @@ public class Plugin : BasePlugin
             if (_random.NextDouble() < explodeChance.Value)
             {
                 // Kaboom!
-                Networking.BroadcastAndPlayToSelf(new Vector3());
+                var agent = PlayerManager.GetLocalPlayerAgent();
+                if (agent == null)
+                {
+                    return;
+                }
+                Networking.BroadcastAndPlayToSelf(agent.m_position);
                 if (willExplodeSelf.Value)
                 {
-                    var agent = PlayerManager.GetLocalPlayerAgent();
-                    if (agent != null)
-                    {
-                        agent.Damage.OnIncomingDamage(agent.Damage.Health + 1, agent.Damage.Health + 1);
-                    }
+                    agent.Damage.OnIncomingDamage(agent.Damage.Health + 1, agent.Damage.Health + 1);
                 }
             }
         }
