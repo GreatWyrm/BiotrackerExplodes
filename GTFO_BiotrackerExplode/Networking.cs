@@ -10,10 +10,16 @@ public class Networking
     private static CellSoundPlayer soundPlayer;
     private static readonly string NetworkEvent = "BiotrackerExplode";
     
-    public static void init()
+    public static void Init()
     {
         NetworkAPI.RegisterEvent<Vector3>(NetworkEvent, OnExplosionReceive);
-        soundPlayer = new();
+        LevelAPI.OnEnterLevel += SetupCellSound;
+    }
+
+    public static void SetupCellSound()
+    {
+        if (soundPlayer == null)
+            soundPlayer = new();
     }
 
     public static void BroadcastAndPlayToSelf(Vector3 position)
@@ -24,6 +30,6 @@ public class Networking
 
     public static void OnExplosionReceive(ulong id, Vector3 position)
     {
-        
+        soundPlayer.Post(EVENTS.EXPLODEREXPLODE, position);
     }
 }

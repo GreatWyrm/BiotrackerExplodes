@@ -3,12 +3,11 @@
         <TSName>BiotrackerExplode</TSName>
         <TSAuthor>Giginss</TSAuthor>
         <TSVersion>1.0.0</TSVersion> <!-- TSVersion empty = GitInfo used instead (if available; check nuget) -->
-        <TSWebsite></TSWebsite>
+        <TSWebsite>None</TSWebsite>
         <TSDescription>Causes the biotracker to maybe explode. Make sure your biotracking is on point!</TSDescription>
     </PropertyGroup>
     <ItemGroup>
         <!-- Add the Dependency strings here, one for each dependency -->
-        <TSDependencyStrings Include="BepInEx-BepInExPack_GTFO-3.2.1" InProject="false" />
-        <!-- <TSDependencyStrings Include="Some-Other-Dependency-1.2.3" InProject="false" /> -->
+        <TSDependencyStrings Include="BepInEx-BepInExPack_GTFO-3.2.3" InProject="false" />
     </ItemGroup>
 </Project>

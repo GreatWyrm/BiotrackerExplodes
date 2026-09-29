@@ -1,3 +1,4 @@
 # Changelog
-## v0.0.1
-* Initial project created
+
+## v1.0.0
+* Initial release

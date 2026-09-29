@@ -44,10 +44,7 @@ public class Plugin : BasePlugin
             "Whether or not exploding will kill the player using the biotracker");
         
         _harmony.PatchAll(Assembly.GetExecutingAssembly());
-
-        
-        Networking.init();
-        
+        Networking.Init();
         
         L.LogInfo("Exploding biotracker loaded!");
     }
@@ -77,9 +74,11 @@ public class Plugin : BasePlugin
 
         if (totalEnemies <= explodeThreshold.Value)
         {
+            L.LogInfo("Below threshold!");
             // Uh oh!
             if (_random.NextDouble() < explodeChance.Value)
             {
+                L.LogInfo("Rolled chance, exploding!");
                 // Kaboom!
                 var agent = PlayerManager.GetLocalPlayerAgent();
                 if (agent == null)
