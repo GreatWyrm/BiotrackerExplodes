@@ -25,11 +25,11 @@ public class Networking
     public static void BroadcastAndPlayToSelf(Vector3 position)
     {
         NetworkAPI.InvokeEvent(NetworkEvent, position);
-        soundPlayer.Post(EVENTS.EXPLODEREXPLODE, position);
+        soundPlayer.Post(EVENTS.STICKYMINEEXPLODE, position);
     }
 
     public static void OnExplosionReceive(ulong id, Vector3 position)
     {
-        soundPlayer.Post(EVENTS.EXPLODEREXPLODE, position);
+        soundPlayer.Post(EVENTS.STICKYMINEEXPLODE, position);
     }
 }

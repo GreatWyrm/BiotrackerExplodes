@@ -1,7 +1,5 @@
-using Enemies;
 using Gear;
 using HarmonyLib;
-using Il2CppSystem.Collections.Generic;
 
 namespace BiotrackerExplode;
 
@@ -9,14 +7,14 @@ namespace BiotrackerExplode;
 public class BiotrackerPatches
 {
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(EnemyScanner), nameof(EnemyScanner.TryGetTaggableEnemies))]
-    public static void Postfix(int maxTagAttempts, bool isOnAim, List<EnemyAgent> enemies)
+    [HarmonyPatch(typeof(EnemyScanner), nameof(EnemyScanner.UpdateTagProgress))]
+    public static void Postfix(EnemyScanner __instance, int maxTags)
     {
-        if (enemies.Count == 0)
+        if (__instance.m_lastTagging && !__instance.m_tagging && !__instance.m_lastRecharging &&
+            __instance.m_recharging)
         {
-            return;
+            // Biotracker has tagged
+            Plugin.EvaluatePings(__instance.m_taggableEnemies);
         }
-        
-        Plugin.EvaluatePings(enemies);
     }
 }
