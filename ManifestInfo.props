@@ -2,7 +2,7 @@
     <PropertyGroup>
         <TSName>BiotrackerExplode</TSName>
         <TSAuthor>Giginss</TSAuthor>
-        <TSVersion>1.0.0</TSVersion> <!-- TSVersion empty = GitInfo used instead (if available; check nuget) -->
+        <TSVersion>1.1.0</TSVersion> <!-- TSVersion empty = GitInfo used instead (if available; check nuget) -->
         <TSWebsite>https://github.com/GreatWyrm/BiotrackerExplodes</TSWebsite>
         <TSDescription>Causes the biotracker to maybe explode. Make sure your biotracking is on point!</TSDescription>
     </PropertyGroup>
